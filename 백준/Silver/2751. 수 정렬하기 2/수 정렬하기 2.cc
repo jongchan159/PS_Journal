@@ -26,7 +26,7 @@ void i_sort(vector<int>& v, int len){
         }
     }
 }
-// merge sort -> 성공 but 시간 초과
+// merge sort -> 성공 (endl이 문제였네)
 void m_sort(vector<int>& v, int left, int right){
     if(left >= right) return; // minimum unit
 
@@ -96,14 +96,14 @@ int main() {
     int N;
     cin >> N;
 
-    vector<int> arr(N); // 이 경우엔 배열이 유리하지만 vector 연습 겸
+    vector<int> v(N); // 이 경우엔 배열이 유리하지만 vector 연습 겸
     for(int i=0; i<N; i++){
-        cin >> arr[i];
+        cin >> v[i];
     }
 
-    m_sort(arr, 0, N-1);
+    sort(v.begin(), v.end());
 
     for(int i=0; i<N; i++){
-        cout << arr[i] << '\n';
+        cout << v[i] << '\n';
     }
 }
