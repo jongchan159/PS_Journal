@@ -20,9 +20,9 @@ public class Main
         int[] DP = new int[k+1];
         DP[0] = 1;
 
-        for(int i = 0; i < n; i++) {
-            for(int j = coins[i]; j <= k; j++) {
-                DP[j] += DP[j - coins[i]];
+        for(int coin : coins) {
+            for(int j = coin; j <= k; j++) {
+                DP[j] += DP[j - coin];
             }
         }
 
