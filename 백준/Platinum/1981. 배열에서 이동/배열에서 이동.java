@@ -1,8 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-// 다익스트라
-// 인접리스트
+// 1981
 public class Main
 {
     static int n, min = 200, max = 0, result = 200;
@@ -27,7 +26,6 @@ public class Main
             }
         }
         
-        // System.out.println("max = " + max + " min = " + min);
         // binary search
         result = max - min;
         binarySearch(0, max - min);
@@ -38,19 +36,20 @@ public class Main
 
     // 차잇값에 대해 이분탐색
     static void binarySearch(int s, int e) {
-        while(s <= e) {
-            int mid = (s+e) / 2;
-            // System.out.println("\ncur mid = " + mid);
-            // BFS 성공 -> 더 낮은값 확인하기
-            if(bfs(mid)) {
-                result = Math.min(result, mid);
-                e = mid - 1;
-            }
-            // 실패 시 높은 값으로 다시 탐색
-            else {
-                s = mid + 1;
-            }
-        } 
+        if(s > e) {
+            return;
+        }
+        
+        int mid = (s+e) / 2;
+        // BFS 성공 -> 더 낮은값 확인하기
+        if(bfs(mid)) {
+            result = Math.min(result, mid);
+            binarySearch(s, mid-1);
+        }
+        // 실패 시 높은 값으로 다시 탐색
+        else {
+            binarySearch(mid+1, e);
+        }
 
         return;
     }
@@ -63,7 +62,7 @@ public class Main
                 s++; e++;
                 continue;
             }
-            // System.out.println("s = " + s + " e = " + e);
+            
             ArrayDeque<int[]> dq = new ArrayDeque<>(); // (y,x)
             boolean[][] visited = new boolean[n][n];
             
@@ -87,7 +86,6 @@ public class Main
                     }
                     // 다음 지역이 도착지
                     if(ny == n-1 && nx == n-1) {
-                        // System.out.println("success");
                         return true;
                     }
                     
